@@ -13,6 +13,8 @@ services:
       -  /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro
     networks:
       - net
+    ports:
+      - "3307:3306"
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: sea-robber
