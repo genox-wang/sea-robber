@@ -25,6 +25,7 @@ services:
     volumes:
       - ./sea-robber-api/src/sea-robber-api/sea-robber-api:/app/sea-robber-api
       - ./sea-robber-api/src/sea-robber-api/app/config/config.yml.prod:/app/app/config/config.yml:ro
+      - /usr/local/go/lib/time/zoneinfo.zip:/usr/local/go/lib/time/zoneinfo.zip:ro
     ports:
       - "8015:8000"
     networks:
