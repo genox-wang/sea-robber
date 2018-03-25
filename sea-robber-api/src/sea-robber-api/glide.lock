@@ -1,5 +1,5 @@
-hash: 46579cfc8fb9942f926b96e6b77927a209a24e5332062a0e8fb803cb21095984
-updated: 2018-03-14T12:55:38.536139+08:00
+hash: 922419d2815d65be6e3a9079514310dfb53d5e44d21554d1db44868432229af8
+updated: 2018-03-25T21:21:56.92764+08:00
 imports:
 - name: github.com/dgrijalva/jwt-go
   version: dbeaa9332f19a944acb5736b4456cfcc02140e29
@@ -41,6 +41,8 @@ imports:
   version: 6ca4dbf54d38eea1a992b3c722a76a5d1c4cb25c
 - name: github.com/mitchellh/mapstructure
   version: 00c29f56e2386353d58c599509e8dc3801b0d716
+- name: github.com/patrickmn/go-cache
+  version: a3647f8e31d79543b2d0f0ae2fe5c379d72cedc0
 - name: github.com/pelletier/go-toml
   version: 05bcc0fb0d3e60da4b8dd5bd7e0ea563eb4ca943
 - name: github.com/satori/go.uuid
@@ -58,7 +60,7 @@ imports:
 - name: github.com/spf13/pflag
   version: ee5fd03fd6acfd43e44aea0b4135958546ed8e73
 - name: github.com/spf13/viper
-  version: 25b30aa063fc18e48662b86996252eabdcf2f0c7
+  version: b5e8006cbee93ec955a89ab31e0e3ce3204f3736
 - name: github.com/ugorji/go
   version: 02537d3a3e32ef636a53519265d211bd208ca488
   subpackages:

@@ -1,6 +1,8 @@
 package main
 
 import (
+	_ "sea-robber-api/app/utils/cache"
+
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/sirupsen/logrus"
 
