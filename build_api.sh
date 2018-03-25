@@ -1,7 +1,9 @@
 #!/bin/bash
-export GOPATH=$(pwd)/../../
+export GOPATH=$(pwd)/sea-robber-api
 
 echo "GOPATH=$GOPATH"
+
+cd sea-robber-api/src/sea-robber-api
 
 echo "copy glide mirror..."
 
