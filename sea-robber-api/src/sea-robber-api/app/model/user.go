@@ -32,7 +32,10 @@ func (u *User) BeforeCreate(scope *gorm.Scope) error {
 
 // Create create a new user
 func (u *User) Create() error {
-	return DB.Create(u).Error
+	if DB.Create(u).Error != nil {
+		return DB.Create(u).Error
+	}
+	return nil
 }
 
 //Update update user
