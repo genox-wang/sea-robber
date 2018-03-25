@@ -1,0 +1,17 @@
+corsEnable: true
+
+log:
+  # panic fatal error warn info debug
+  logLevel: "debug"
+
+router:
+  # debug release test
+  logMode: "debug"
+
+db:
+  mysql: "root:root@/sea-robber?charset=utf8&parseTime=true"
+  showLog: true
+
+# html:
+#   index: "./../../../trans-trip-admin/dist/index.html"
+#   static: "./../../../trans-trip-admin/dist/static"
