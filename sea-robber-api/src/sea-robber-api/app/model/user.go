@@ -16,6 +16,7 @@ type User struct {
 	DisplayName  string    `json:"display_name"`
 	BattleScore  int64     `json:"battle_score" gorm:"not null"`
 	BattleShipID int       `json:"battle_ship_id" gorm:"not null"`
+	Rank         int       `json:"rank" gorm:"-"`
 	Friends      []*User   `json:"friends" gorm:"many2many:user_friends;association_jointable_foreignkey:friend_id;ASSOCIATION_SAVE_REFERENCE:true;ASSOCIATION_AUTOUPDATE:false;"`
 	CreatedAt    time.Time `json:"-"`
 	UpdatedAt    time.Time `json:"-"`

@@ -8,6 +8,7 @@ cc.Class({
         btn_create_user: cc.Button,
         btn_update_user: cc.Button,
 
+        user_id: 3,
         user_uuid: '722527f8-308f-11e8-84b8-0242ac140003',
         display_name: 'wangji',
         battle_score: 10000,
@@ -15,7 +16,7 @@ cc.Class({
     },
 
     onLoad () {
-        this.registerBtn(this.btn_rank_all, () => getRankAll())
+        this.registerBtn(this.btn_rank_all, () => getRankAll(this.user_id, 3, 10))
         this.registerBtn(this.btn_create_user, () => postCreateUser(this.display_name, this.battle_score, this.battle_ship_id))
         this.registerBtn(this.btn_update_user, () => postUpdateUser(this.display_name, this.battle_score, this.battle_ship_id, this.user_uuid))
     },

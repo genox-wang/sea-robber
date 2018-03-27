@@ -13,19 +13,29 @@ function newHttpRequest(resolve, reject) {
 }
 
 
-module.exports.get = function (url) {
+module.exports.get = function (url, options) {
   return new Promise(function (resolve, reject) {
     let xhr = newHttpRequest(resolve, reject)
     xhr.open('GET', url, true);
+    if (options.headers) {
+       Object.keys(options.headers).forEach( key => {
+         xhr.setRequestHeader(key, options.headers[key]);
+       })
+    }
     xhr.send();
   })
 }
 
-module.exports.post = function (url, params) {
+module.exports.post = function (url, params, options) {
   return new Promise(function (resolve, reject) {
     let xhr = newHttpRequest(resolve, reject)
     xhr.open('POST', url, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
+    if (options.headers) {
+      Object.keys(options.headers).forEach( key => {
+        xhr.setRequestHeader(key, options.headers[key]);
+      })
+    }
     xhr.send(JSON.stringify(params));
   })
 }

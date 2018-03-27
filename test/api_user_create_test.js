@@ -6,7 +6,8 @@ import {
 
 var Mock = require('./node_modules/mockjs/dist/mock.js')
 
-const baseURL = "http://sea.robber.happygod.cn/api";
+// const baseURL = "http://sea.robber.happygod.cn/api";
+const baseURL = "http://localhost:8000/api";
 
 const mockTemplate = {
   'display_name': '@NAME',
@@ -17,7 +18,7 @@ const mockTemplate = {
 
 export let options = {
   vus: 100,
-  vusMax: 200,
+  // vusMax: 200,
   duration: "10s",
 };
 
