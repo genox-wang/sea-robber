@@ -924,6 +924,7 @@
     "btn_update_user": {
       "__id__": 20
     },
+    "user_id": 3,
     "user_uuid": "722527f8-308f-11e8-84b8-0242ac140003",
     "display_name": "wangji1",
     "battle_score": 10000,

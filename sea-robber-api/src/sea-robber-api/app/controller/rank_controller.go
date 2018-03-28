@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"sea-robber-api/app/model"
 	"sea-robber-api/app/utils/cache"
+	"time"
 
 	"strconv"
 
@@ -13,6 +14,8 @@ import (
 const (
 	// CACHE_RANK_ALL  rank cache key
 	CACHE_RANK_ALL = "cRA"
+	// CACHE_RANK_LOCK  rank cache lock
+	CACHE_RANK_LOCK = "cRL"
 )
 
 type CacheRankAll struct {
@@ -43,29 +46,36 @@ func RankAllGet(c *gin.Context) {
 		}
 	}
 
-	users := make([]model.User, 0)
+	if cache.Cache.Add(CACHE_RANK_LOCK, true, time.Second*10) == nil {
+		defer cache.Cache.Delete(CACHE_RANK_LOCK)
+		users := make([]model.User, 0)
 
-	if err := model.DB.Select("id, uuid, display_name, battle_score, battle_ship_id").Order("battle_score desc").Limit(10000).Find(&users).Error; err == nil {
-		cRankAll := CacheRankAll{}
-		cRankAll.UsersMap = make(map[int64]model.User, 0)
-		cRankAll.Rank = make([]int64, 0)
-		for idx, u := range users {
-			u.Rank = idx + 1
-			cRankAll.UsersMap[u.ID] = u
-			cRankAll.Rank = append(cRankAll.Rank, u.ID)
+		if err := model.DB.Select("id, uuid, display_name, battle_score, battle_ship_id").Order("battle_score desc").Limit(10000).Find(&users).Error; err == nil {
+			cRankAll := CacheRankAll{}
+			cRankAll.UsersMap = make(map[int64]model.User, 0)
+			cRankAll.Rank = make([]int64, 0)
+			for idx, u := range users {
+				u.Rank = idx + 1
+				cRankAll.UsersMap[u.ID] = u
+				cRankAll.Rank = append(cRankAll.Rank, u.ID)
+			}
+			cache.Cache.Set(CACHE_RANK_ALL, cRankAll, cache.CACHE_DEFAULT_EXPIRATION)
+			// cache.Cache.Set(CACHE_RANK_ALL, cRankAll, time.Second*5)
+
+			status, data := GetRankFromCache(cRankAll, id, int(page), int(size))
+			c.JSON(status, data)
+		} else {
+			c.JSON(http.StatusBadRequest, gin.H{
+				"msg": err.Error(),
+			})
 		}
-		cache.Cache.Set(CACHE_RANK_ALL, cRankAll, cache.CACHE_DEFAULT_EXPIRATION)
-
-		status, data := GetRankFromCache(cRankAll, id, int(page), int(size))
-		c.JSON(status, data)
 	} else {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"msg": err.Error(),
-		})
+		c.JSON(http.StatusForbidden, nil)
 	}
 }
 
-func GetRankFromCache(cRankAll CacheRankAll, userId int64, page int, size int) (int, gin.H) {
+// GetRankFromCache  get rank from cache
+func GetRankFromCache(cRankAll CacheRankAll, userID int64, page int, size int) (int, gin.H) {
 	startIndex := page * size
 	endIndex := (page + 1) * size
 	rankLen := len(cRankAll.Rank)
@@ -83,7 +93,7 @@ func GetRankFromCache(cRankAll CacheRankAll, userId int64, page int, size int) (
 		users = append(users, cRankAll.UsersMap[r])
 	}
 	userRank := -1
-	if user, has := cRankAll.UsersMap[userId]; has {
+	if user, has := cRankAll.UsersMap[userID]; has {
 		userRank = user.Rank
 	}
 

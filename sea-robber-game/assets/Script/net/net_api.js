@@ -12,7 +12,7 @@ module.exports.getRankAll = function (user_id, page, size) {
   let url = `${config.baseURL}/rank/?page=${page}&size=${size}` 
   return http.get(url, { headers: { "Authorization": user_id }})
     .then(resp => {
-      return Promise.resolve(JSON.parse(resp).rank)
+      return Promise.resolve(JSON.parse(resp))
     })
 }
 
