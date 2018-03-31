@@ -6,7 +6,9 @@ import (
 
 	"github.com/sirupsen/logrus"
 
+	"github.com/DataDog/dd-trace-go/tracer"
 	"github.com/DataDog/dd-trace-go/tracer/contrib/gin-gonic/gintrace"
+
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
@@ -26,7 +28,7 @@ func Run(port int) {
 func init() {
 	gin.SetMode(config.GetString("router.logMode"))
 	router = gin.Default()
-	router.Use(gintrace.Middleware("sea-robber"))
+	router.Use(gintrace.MiddlewareTracer("sea-robber", tracer.NewTracerTransport(tracer.NewTransport("dd-agent", "8126"))))
 	if config.GetBool("corsEnable") {
 		allowCors()
 	}
