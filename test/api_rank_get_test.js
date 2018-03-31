@@ -4,8 +4,8 @@ import {
   sleep
 } from "k6";
 
-// const baseURL = "https://sea.robber.happygod.cn/api";
-const baseURL = "http://localhost:8000/api";
+const baseURL = "https://sea.robber.happygod.cn/api";
+// const baseURL = "http://localhost:8000/api";
 
 export let options = {
   vus: 100,

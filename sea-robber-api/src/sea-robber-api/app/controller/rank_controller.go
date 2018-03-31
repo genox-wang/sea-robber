@@ -18,6 +18,7 @@ const (
 	CACHE_RANK_LOCK = "cRL"
 )
 
+// CacheRankAll struct for cache
 type CacheRankAll struct {
 	UsersMap map[int64]model.User
 	Rank     []int64

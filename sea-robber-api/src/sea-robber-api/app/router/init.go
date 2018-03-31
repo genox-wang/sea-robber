@@ -6,6 +6,7 @@ import (
 
 	"github.com/sirupsen/logrus"
 
+	"github.com/DataDog/dd-trace-go/tracer/contrib/gin-gonic/gintrace"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
@@ -25,6 +26,7 @@ func Run(port int) {
 func init() {
 	gin.SetMode(config.GetString("router.logMode"))
 	router = gin.Default()
+	router.Use(gintrace.Middleware("sea-robber"))
 	if config.GetBool("corsEnable") {
 		allowCors()
 	}
