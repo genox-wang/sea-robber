@@ -1,6 +1,8 @@
 package main
 
 import (
+	_ "expvar"
+	"net/http"
 	_ "sea-robber-api/app/utils/cache"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -12,6 +14,7 @@ import (
 )
 
 func main() {
+	go http.ListenAndServe(":8080", nil)
 	initLogLevel()
 	logrus.Warnf("DB => %s", config.GetString("db.mysql"))
 	model.OpenDB(config.GetString("db.mysql"))
