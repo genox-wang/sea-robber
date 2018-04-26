@@ -1,10 +1,6 @@
-hash: d648ef0755865e4b198d65c627dd9bbe810ee47c87283f3d6407aff006e8cb0f
-updated: 2018-03-31T20:05:33.396786+08:00
+hash: 922419d2815d65be6e3a9079514310dfb53d5e44d21554d1db44868432229af8
+updated: 2018-04-24T14:08:47.480253+08:00
 imports:
-- name: github.com/DataDog/dd-trace-go
-  version: 27617015d45e6cd550b9a7ac7715c37cc2f7d020
-  subpackages:
-  - tracer
 - name: github.com/dgrijalva/jwt-go
   version: dbeaa9332f19a944acb5736b4456cfcc02140e29
 - name: github.com/fsnotify/fsnotify
@@ -53,7 +49,7 @@ imports:
 - name: github.com/satori/go.uuid
   version: f58768cc1a7a7e77a3bd49e98cdd21419399b6a3
 - name: github.com/sirupsen/logrus
-  version: c155da19408a8799da419ed3eeb0cb5db0ad5dbc
+  version: d682213848ed68c0a260ca37d6dd5ace8423f5ba
 - name: github.com/spf13/afero
   version: bbf41cb36dffe15dff5bf7e18c447801e7ffe163
   subpackages:
