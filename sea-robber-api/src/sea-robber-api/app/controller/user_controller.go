@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"fmt"
 	"net/http"
 	"sea-robber-api/app/model"
 
@@ -17,6 +18,7 @@ func UserCreatePost(c *gin.Context) {
 				"user": user,
 			})
 		} else {
+			fmt.Println(err.Error())
 			c.JSON(http.StatusBadRequest, gin.H{
 				"msg": err.Error(),
 			})
