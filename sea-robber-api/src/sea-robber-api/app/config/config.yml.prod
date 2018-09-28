@@ -2,7 +2,7 @@ corsEnable: true
 
 log:
   # panic fatal error warn info debug
-  logLevel: "warn"
+  logLevel: "debug"
 
 router:
   # debug release test
@@ -10,7 +10,7 @@ router:
 
 db:
   mysql: "root:root@tcp(mysql:3306)/sea-robber?charset=utf8mb4&parseTime=true"
-  showLog: false
+  showLog: true
 
 #html:
 #  index: "./dist/index.html"
